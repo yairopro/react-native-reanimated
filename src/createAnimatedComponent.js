@@ -77,13 +77,14 @@ export default function createAnimatedComponent(Component) {
           prop.attachEvent(node, key);
         } else if (prop instanceof WorkletEventHandler) {
           prop = [prop];
-        } 
-        
-        if (Array.isArray(prop)) {
-          for (let handler of prop) {
-            handler.registerForEvent(viewTag, key);
-          }
+          prop.registerForEvent(viewTag, key);
         }
+
+        // if (Array.isArray(prop)) {
+        //   for (let handler of prop) {
+        //     handler.registerForEvent(viewTag, key);
+        //   }
+        // }
       }
     }
 
@@ -96,8 +97,8 @@ export default function createAnimatedComponent(Component) {
           prop.detachEvent(node, key);
         } else if (prop instanceof WorkletEventHandler) {
           prop = [prop];
-        } 
-        
+        }
+
         if (Array.isArray(prop)) {
           for (let handler of prop) {
             handler.unregisterFromEvent();
@@ -229,7 +230,11 @@ export default function createAnimatedComponent(Component) {
         const value = inputProps[key];
         if (key === 'style') {
           props[key] = this._filterNonAnimatedStyle(StyleSheet.flatten(value));
-        } else if (value instanceof AnimatedEvent || value instanceof WorkletEventHandler || Array.isArray(value)) {
+        } else if (
+          value instanceof AnimatedEvent ||
+          value instanceof WorkletEventHandler ||
+          Array.isArray(value)
+        ) {
           // we cannot filter out event listeners completely as some components
           // rely on having a callback registered in order to generate events
           // alltogether. Therefore we provide a dummy callback here to allow

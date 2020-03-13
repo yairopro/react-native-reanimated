@@ -10,27 +10,28 @@ import {
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
 
-import MichalApp from './MichalApp'
-import MichalAppJustSet from './MichalAppJustSet'
-import MichalAppNotify from './MichalAppNotify'
-import MichalAppSpeedTest from './MichalAppSpeedTest'
-import MichalAppTwoHandlers from './MichalAppTwoHandlers'
+import Menu from './Menu';
+import MichalApp from './MichalApp';
+import MichalAppJustSet from './MichalAppJustSet';
+import MichalAppNotify from './MichalAppNotify';
+import MichalAppSpeedTest from './MichalAppSpeedTest';
+import MichalAppTwoHandlers from './MichalAppTwoHandlers';
 import SzymonRotationScreen from './SzymonRotationScreen';
-import SzymonRotationWithResetScreen from './SzymonRotationWithReset'
+import SzymonRotationWithResetScreen from './SzymonRotationWithReset';
 import SzymonStartStopScreen from './SzymonStartStopScreen';
-
 
 // set components here:
 const components = {
-  'MichalApp': MichalApp,
-  'MichalAppJustSet': MichalAppJustSet,
-  'MichalAppNotify': MichalAppNotify,
-  'MichalAppSpeedTest': MichalAppSpeedTest,
-  'MichalAppTwoHandlers': MichalAppTwoHandlers,
-  'SzymonRotation': SzymonRotationScreen,
-  'SzymonRotationWithReset': SzymonRotationWithResetScreen,
-  'SzymonStartStop': SzymonStartStopScreen,
-}
+  '3D Menu': Menu,
+  MichalApp: MichalApp,
+  MichalAppJustSet: MichalAppJustSet,
+  MichalAppNotify: MichalAppNotify,
+  MichalAppSpeedTest: MichalAppSpeedTest,
+  MichalAppTwoHandlers: MichalAppTwoHandlers,
+  SzymonRotation: SzymonRotationScreen,
+  SzymonRotationWithReset: SzymonRotationWithResetScreen,
+  SzymonStartStop: SzymonStartStopScreen,
+};
 
 YellowBox.ignoreWarnings([
   'Warning: isMounted(...) is deprecated',
@@ -48,22 +49,28 @@ class MainScreen extends React.Component {
     return (
       <View>
         <Text>Pick the screen:</Text>
-        {
-          Object.keys(components).map(item => {
-            return <Button title={ item } onPress={ () => { this.props.navigation.navigate(item) } } key={ item } />
-          })
-        }
+        {Object.keys(components).map(item => {
+          return (
+            <Button
+              title={item}
+              onPress={() => {
+                this.props.navigation.navigate(item);
+              }}
+              key={item}
+            />
+          );
+        })}
       </View>
     );
   }
 }
 
-const screens = {}
+const screens = {};
 for (let key in components) {
   screens[key] = {
     screen: components[key],
     title: key,
-  }
+  };
 }
 
 const ExampleApp = createStackNavigator(
@@ -82,5 +89,5 @@ const createApp = Platform.select({
   default: input => createAppContainer(input),
 });
 
-
-export default createApp(ExampleApp);
+// export default createApp(ExampleApp);
+export default Menu;
