@@ -77,14 +77,15 @@ export default function createAnimatedComponent(Component) {
           prop.attachEvent(node, key);
         } else if (prop instanceof WorkletEventHandler) {
           prop = [prop];
-          prop.registerForEvent(viewTag, key);
         }
 
-        // if (Array.isArray(prop)) {
-        //   for (let handler of prop) {
-        //     handler.registerForEvent(viewTag, key);
-        //   }
-        // }
+        if (Array.isArray(prop)) {
+          for (let handler of prop) {
+            if (handler instanceof WorkletEventHandler) {
+              handler.registerForEvent(viewTag, key);
+            }
+          }
+        }
       }
     }
 
