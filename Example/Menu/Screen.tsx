@@ -29,24 +29,38 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ({ open, close, rotateY, scale, opacity, borderRadius }) => {
+export default ({ isOpen }) => {
+  const panelStyles = useAnimatedStyle(
+    function(input) {
+      const { isOpen, width } = input;
+      return {
+        borderRadius: isOpen ? 20 : 0,
+        transform: [
+          { perspective: 1000 },
+          { translateX: width / 2 },
+          { rotateY: isOpen ? '-45deg' : '0deg' },
+          { translateX: -width / 2 },
+          { scale: isOpen ? 0.9 : 1 },
+        ],
+      };
+    },
+    { isOpen, width }
+  );
+
+  const overlayStyles = useAnimatedStyle(
+    function(input) {
+      const { isOpen } = input;
+      return {
+        opacity: isOpen ? 1 : 0,
+      };
+    },
+    { isOpen }
+  );
+
   return (
     <>
-      <Animated.View
-        style={[
-          styles.container,
-          {
-            borderRadius,
-            transform: [
-              perspective,
-              { translateX: width / 2 },
-              { rotateY },
-              { translateX: -width / 2 },
-              { scale },
-            ],
-          },
-        ]}>
-        <TouchableOpacity onPress={open}>
+      <Animated.View style={[styles.container, panelStyles]}>
+        <TouchableOpacity onPress={() => open.set(true)}>
           <View style={styles.button}>
             <Text style={styles.label}>Show Menu</Text>
           </View>
@@ -54,11 +68,13 @@ export default ({ open, close, rotateY, scale, opacity, borderRadius }) => {
       </Animated.View>
       <Animated.View
         pointerEvents="none"
-        style={{
-          ...StyleSheet.absoluteFillObject,
-          backgroundColor: 'black',
-          opacity,
-        }}
+        style={[
+          {
+            ...StyleSheet.absoluteFillObject,
+            backgroundColor: 'black',
+          },
+          overlayStyles,
+        ]}
       />
     </>
   );

@@ -13,95 +13,41 @@ const MIN = -width * Math.tan(alpha);
 const MAX = 0;
 const PADDING = 100;
 
-export default ({ hideTarget, hideWorklet, scale, rotateY, translateX }) => {
-  const totalTranslation = useSharedValue(0);
-  const extraRotate = useSharedValue('0deg');
-  const extraTranslate = useSharedValue(0);
+export default ({ isOpen }) => {
+  const tilt = useAnimatedValue(0);
 
-  const animateWorklet = useWorklet(
-    function(totalTranslation, extraRotate, extraTranslate) {
-      'worklet';
-      let translationX = totalTranslation.value;
-      const sign = translationX < 0 ? -1 : 1;
-
-      const x = translationX;
-      const dt = 1 / 60; // would be nice to be provided with dt when worklet is used as a looper
-      const tension = 300;
-      const damping = 12;
-      const acc = -tension * x;
-
-      let V = dt * acc;
-      V = V + dt * -damping * V;
-
-      translationX = translationX + V * dt;
-
-      if (Math.abs(translationX) < 0.2) {
-        translationX = 0;
-      }
-      totalTranslation.set(translationX);
-
-      const extraNorm = Math.min(translationX * sign, 100) / 100;
-      const extraProgress = extraNorm * sign;
-
-      extraRotate.set(extraProgress * -30 + 'deg');
-      extraTranslate.set(extraProgress * 24);
-
-      if (translationX === 0) {
-        // would be easier if we could call stop, I already checked earlier
-        // for the end of animation and now I have to add it again
-        return true;
-      }
+  const animatedStyles = useAnimatedStyles(
+    function(input) {
+      const { isOpen, width, MIN } = input;
+      const tilt = input.tilt / 50; // normalize tilt
+      return {
+        transform: [
+          { translateX: isOpen ? tilt * 100 : MIN },
+          { translateX: -width / 2 },
+          { rotateY: (isOpen ? tilt * 15 : -45) + 'deg' },
+          { translateX: width / 2 },
+          { scale: isOpen ? 1 : 0.9 },
+        ],
+      };
     },
-    [totalTranslation, extraRotate, extraTranslate]
+    { isOpen, tilt, width, MIN }
   );
 
   const eventWorklet = useEventWorklet(
-    function(
-      totalTranslation,
-      extraRotate,
-      extraTranslate,
-      animateWorklet,
-      hideTarget,
-      hideWorklet
-    ) {
-      'worklet';
-      let translationX = this.event.translationX + totalTranslation.value;
+    function(event, input) {
       if (this.event.state === 2) {
-        // for animation it'd be convinient to have a way to define a logic that runs
-        // when it gets interrupted (ended or cancelled).
-        this.stop(animateWorklet);
+        const gestureF = Animated.springForce(0, event.translationX);
+        const tiltF = Animated.springForce(0, input.tilt);
+
+        input.tilt = input.tilt + gestureF + tiltF;
       } else if (this.event.state === 5) {
-        totalTranslation.set(translationX);
-        if (translationX < -30) {
-          this.log('FINAL TRANSLATION ' + translationX);
-          // we need to paste hide logic here, would be nice to be able to use function
-          // maybe "worklet" should just be a "function" and when we want to use
-          // it to drive animation we can use some "looper" abstraction?
-          hideTarget.set(0);
-          this.start(hideWorklet);
+        if (input.tilt < -30) {
+          input.isOpen = false;
         }
-        // would be nice to be able to call worklet.start like we do  in JS thread
-        this.start(animateWorklet);
+        input.tilt = 0;
       }
-
-      const sign = translationX < 0 ? -1 : 1;
-      const extraNorm = Math.min(translationX * sign, 100) / 100;
-      const extraProgress = Math.sqrt(extraNorm) * sign;
-
-      // the logic of updating rotation and translate needs to be copied in two
-      // places, we could've used Anmated.interpolate to avoid that and only update
-      // "progress"
-      extraRotate.set(extraProgress * -30 + 'deg');
-      extraTranslate.set(extraProgress * 24);
     },
-    [
-      totalTranslation,
-      extraRotate,
-      extraTranslate,
-      animateWorklet,
-      hideTarget,
-      hideWorklet,
-    ]
+    { tilt, isOpen }
   );
 
   return (
@@ -109,20 +55,7 @@ export default ({ hideTarget, hideWorklet, scale, rotateY, translateX }) => {
       minDist={0}
       onGestureEvent={eventWorklet}
       onHandlerStateChange={eventWorklet}>
-      <Animated.View
-        style={{
-          opacity: 1,
-          transform: [
-            perspective,
-            { translateX },
-            { translateX: extraTranslate },
-            { translateX: -width / 2 },
-            { rotateY },
-            { rotateY: extraRotate },
-            { translateX: width / 2 },
-            { scale },
-          ],
-        }}>
+      <Animated.View style={animatedStyles}>
         <Content />
       </Animated.View>
     </PanGestureHandler>
