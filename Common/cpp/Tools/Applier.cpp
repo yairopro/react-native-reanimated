@@ -55,6 +55,7 @@ bool Applier::apply(jsi::Runtime &rt, std::shared_ptr<BaseWorkletModule> module)
       std::string message = "worklet error: ";
       message += e.what();
       this->errorHandler->raise(message.c_str());
+      shouldFinish = true;
     }
     delete [] args;
   }

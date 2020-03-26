@@ -6,6 +6,10 @@
 //  Copyright © 2020 Facebook. All rights reserved.
 //
 #import <XCTest/XCTest.h>
+#include <string>
+#include <memory>
+#include <vector>
+#include <tuple>
 #import "Applier.h"
 #include "../TestTools/TestTools.h"
 #include "Worklet.h"
@@ -17,13 +21,9 @@
 
 @interface ApplierTest : XCTestCase
 {
-  std::shared_ptr<Applier> applier;
-  std::shared_ptr<Worklet> worklet;
-  std::shared_ptr<ErrorHandler> errorHandler;
-  std::shared_ptr<SharedValueRegistry> sharedValueRegistry;
-  std::shared_ptr<WorkletModule> workletModule;
-  double initialValue;
+  double initialSDValue;
   std::shared_ptr<SharedDouble> sd;
+  std::shared_ptr<jsi::Runtime> rt;
 }
 @end
 
@@ -32,23 +32,33 @@
 - (void)setUp {
   [super setUp];
   // Put setup code here. This method is called before the invocation of each test method in the class.
+  initialSDValue = 27;
+  sd.reset(new SharedDouble(0, initialSDValue));
+  rt = TestTools::getRuntime();
+}
+
+- (void)tearDown {
+  // Put teardown code here. This method is called after the invocation of each test method in the class.
+  ;
+  [super tearDown];
+}
+
+- (std::tuple<std::shared_ptr<Applier>, std::shared_ptr<WorkletModule>>)createApplier:(const char *)functionStr {
   
   // create worklet
-  worklet.reset(new Worklet);
+  std::shared_ptr<Worklet> worklet(new Worklet);
   worklet->workletId = 0;
-  worklet->body = std::make_shared<jsi::Function>(TestTools::stringToFunction("function(v) {v.set(9);}"));
+  worklet->body = std::make_shared<jsi::Function>(TestTools::stringToFunction(functionStr));
   // get scheduler
   std::shared_ptr<Scheduler> scheduler(TestTools::getScheduler());
   // create error handler
-  errorHandler.reset(((ErrorHandler*)new IOSErrorHandler(scheduler)));
+  std::shared_ptr<ErrorHandler> errorHandler(((ErrorHandler*)new IOSErrorHandler(scheduler)));
   // create shared value registry
-  sharedValueRegistry.reset(new SharedValueRegistry);
+  std::shared_ptr<SharedValueRegistry> sharedValueRegistry(new SharedValueRegistry);
   // create shared values
-  initialValue = 27;
-  sd.reset(new SharedDouble(0, initialValue));
   sharedValueRegistry->registerSharedValue(0, sd);
   // create applier
-  applier.reset(new Applier(0, worklet, { 0 }, errorHandler, sharedValueRegistry));
+  std::shared_ptr<Applier> applier(new Applier(0, worklet, { 0 }, errorHandler, sharedValueRegistry));
   // create mapper registry
   std::shared_ptr<MapperRegistry> mapperRegistry(new MapperRegistry(sharedValueRegistry));
   // create applier registry
@@ -59,30 +69,33 @@
   jsi::Value uv = jsi::Value::undefined();
   std::shared_ptr<jsi::Value> eventValue(&uv);
   // create worklet module
-  workletModule.reset(new WorkletModule(
+  std::shared_ptr<WorkletModule> workletModule(new WorkletModule(
                                         sharedValueRegistry,
                                         applierRegistry,
                                         workletRegistry,
                                         eventValue,
                                         errorHandler));
-   
-}
-
-- (void)tearDown {
-  // Put teardown code here. This method is called after the invocation of each test method in the class.
-  ;
-  [super tearDown];
-}
-
-- (std::shared_ptr<Applier>)createApplier {
-  return nullptr;
+  return { applier, workletModule };
 }
 
 - (void)testApply {
-  std::shared_ptr<jsi::Runtime> rt = TestTools::getRuntime();
-  XCTAssert(sd->value == initialValue, @"shared value initialized properly");
-  applier->apply(*rt, workletModule);
-  XCTAssert(sd->value == 9, @"shared value changed properly");
+  XCTAssert(sd->value == initialSDValue, @"shared value initialized properly");
+  // elements:
+  //  function string
+  //  expexted return value
+  //  new value of shared double expected
+  std::vector<std::tuple<std::string, bool, double>> data = {
+    { "function(v) {v.set(88.3);}", false, 88.3 },
+    { "function(v) {v.set(45); return true;}", true, 45 },
+    { "function(v) {v.set(0); if (v.value !== 0) { return true; }v.set(111);}", false, 111 },
+  };
+  
+  for (auto item : data) {
+    auto app = [self createApplier:std::get<0>(item).c_str()];
+    XCTAssert(std::get<0>(app)->apply(*rt, std::get<1>(app)) == std::get<1>(item), @"applier returned proper value");
+    XCTAssert(sd->value == std::get<2>(item), @"shared value changed properly");
+  }
+  
 }
 
 - (void)testAddOnFinishListener {
