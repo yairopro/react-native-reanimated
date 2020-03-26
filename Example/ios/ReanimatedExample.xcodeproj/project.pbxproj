@@ -16,22 +16,24 @@
 		4457A80D20AD4C0100014714 /* MBFingerTipWindow.m in Sources */ = {isa = PBXBuildFile; fileRef = 4457A80B20AD4C0000014714 /* MBFingerTipWindow.m */; };
 		6687CDB022537CD000C3E56A /* JavaScriptCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6687CD8022537CCF00C3E56A /* JavaScriptCore.framework */; };
 		715B4D0D24236CA80073FC2F /* SampleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 00E356F21AD99517003FC87E /* SampleTest.mm */; };
-		71F28A5A242B71DE006D7996 /* WorkletRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A4A242B71DE006D7996 /* WorkletRegistryTest.mm */; };
-		71F28A5B242B71DE006D7996 /* NativeReanimatedModuleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A4B242B71DE006D7996 /* NativeReanimatedModuleTest.mm */; };
-		71F28A5C242B71DE006D7996 /* SharedValueRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A4C242B71DE006D7996 /* SharedValueRegistryTest.mm */; };
-		71F28A5D242B71DE006D7996 /* SharedWorkletStarterTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A4D242B71DE006D7996 /* SharedWorkletStarterTest.mm */; };
-		71F28A5E242B71DE006D7996 /* ApplierRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A4E242B71DE006D7996 /* ApplierRegistryTest.mm */; };
-		71F28A5F242B71DE006D7996 /* SharedArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A4F242B71DE006D7996 /* SharedArrayTest.mm */; };
-		71F28A60242B71DE006D7996 /* SharedStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A50242B71DE006D7996 /* SharedStringTest.mm */; };
-		71F28A61242B71DE006D7996 /* ApplierTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A51242B71DE006D7996 /* ApplierTest.mm */; };
-		71F28A62242B71DE006D7996 /* SchedulerTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A52242B71DE006D7996 /* SchedulerTest.mm */; };
-		71F28A63242B71DE006D7996 /* SharedObjectTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A53242B71DE006D7996 /* SharedObjectTest.mm */; };
-		71F28A64242B71DE006D7996 /* NativeReanimatedModuleSpecTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A54242B71DE006D7996 /* NativeReanimatedModuleSpecTest.mm */; };
-		71F28A65242B71DE006D7996 /* WorkletModuleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A55242B71DE006D7996 /* WorkletModuleTest.mm */; };
-		71F28A66242B71DE006D7996 /* SharedFunctionTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A56242B71DE006D7996 /* SharedFunctionTest.mm */; };
-		71F28A67242B71DE006D7996 /* MapperTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A57242B71DE006D7996 /* MapperTest.mm */; };
-		71F28A68242B71DE006D7996 /* SharedDoubleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A58242B71DE006D7996 /* SharedDoubleTest.mm */; };
-		71F28A69242B71DE006D7996 /* MapperRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71F28A59242B71DE006D7996 /* MapperRegistryTest.mm */; };
+		71CE41E3242CAE7000E4BDA4 /* WorkletRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D2242CAE7000E4BDA4 /* WorkletRegistryTest.mm */; };
+		71CE41E4242CAE7000E4BDA4 /* NativeReanimatedModuleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D3242CAE7000E4BDA4 /* NativeReanimatedModuleTest.mm */; };
+		71CE41E5242CAE7000E4BDA4 /* SharedValueRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D4242CAE7000E4BDA4 /* SharedValueRegistryTest.mm */; };
+		71CE41E6242CAE7000E4BDA4 /* SharedWorkletStarterTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D5242CAE7000E4BDA4 /* SharedWorkletStarterTest.mm */; };
+		71CE41E7242CAE7000E4BDA4 /* ApplierRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D6242CAE7000E4BDA4 /* ApplierRegistryTest.mm */; };
+		71CE41E8242CAE7000E4BDA4 /* SharedArrayTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D7242CAE7000E4BDA4 /* SharedArrayTest.mm */; };
+		71CE41E9242CAE7000E4BDA4 /* SharedStringTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D8242CAE7000E4BDA4 /* SharedStringTest.mm */; };
+		71CE41EA242CAE7000E4BDA4 /* ApplierTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41D9242CAE7000E4BDA4 /* ApplierTest.mm */; };
+		71CE41EB242CAE7000E4BDA4 /* SchedulerTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41DA242CAE7000E4BDA4 /* SchedulerTest.mm */; };
+		71CE41EC242CAE7000E4BDA4 /* SharedObjectTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41DB242CAE7000E4BDA4 /* SharedObjectTest.mm */; };
+		71CE41ED242CAE7000E4BDA4 /* NativeReanimatedModuleSpecTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41DC242CAE7000E4BDA4 /* NativeReanimatedModuleSpecTest.mm */; };
+		71CE41EE242CAE7000E4BDA4 /* WorkletModuleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41DD242CAE7000E4BDA4 /* WorkletModuleTest.mm */; };
+		71CE41EF242CAE7000E4BDA4 /* SharedFunctionTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41DE242CAE7000E4BDA4 /* SharedFunctionTest.mm */; };
+		71CE41F0242CAE7000E4BDA4 /* MapperTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41DF242CAE7000E4BDA4 /* MapperTest.mm */; };
+		71CE41F1242CAE7000E4BDA4 /* SharedDoubleTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41E0242CAE7000E4BDA4 /* SharedDoubleTest.mm */; };
+		71CE41F2242CAE7000E4BDA4 /* MapperRegistryTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41E1242CAE7000E4BDA4 /* MapperRegistryTest.mm */; };
+		71CE41F4242CAE8B00E4BDA4 /* IOSSchedulerForTests.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41F3242CAE8B00E4BDA4 /* IOSSchedulerForTests.mm */; };
+		71CE41FA242CC9A200E4BDA4 /* TestTools.mm in Sources */ = {isa = PBXBuildFile; fileRef = 71CE41F9242CC9A200E4BDA4 /* TestTools.mm */; };
 		930FF24E2FD6319EF668B393 /* libPods-ReanimatedExample.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6ACC9684CBF1A2496B6FA667 /* libPods-ReanimatedExample.a */; };
 /* End PBXBuildFile section */
 
@@ -72,22 +74,26 @@
 		715B4D03242364A80073FC2F /* ReanimatedExampleTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReanimatedExampleTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		715B4D05242364A80073FC2F /* ReanimatedExampleTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ReanimatedExampleTests.mm; sourceTree = "<group>"; };
 		715B4D07242364A80073FC2F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		71F28A4A242B71DE006D7996 /* WorkletRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorkletRegistryTest.mm; sourceTree = "<group>"; };
-		71F28A4B242B71DE006D7996 /* NativeReanimatedModuleTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeReanimatedModuleTest.mm; sourceTree = "<group>"; };
-		71F28A4C242B71DE006D7996 /* SharedValueRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedValueRegistryTest.mm; sourceTree = "<group>"; };
-		71F28A4D242B71DE006D7996 /* SharedWorkletStarterTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedWorkletStarterTest.mm; sourceTree = "<group>"; };
-		71F28A4E242B71DE006D7996 /* ApplierRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplierRegistryTest.mm; sourceTree = "<group>"; };
-		71F28A4F242B71DE006D7996 /* SharedArrayTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedArrayTest.mm; sourceTree = "<group>"; };
-		71F28A50242B71DE006D7996 /* SharedStringTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedStringTest.mm; sourceTree = "<group>"; };
-		71F28A51242B71DE006D7996 /* ApplierTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplierTest.mm; sourceTree = "<group>"; };
-		71F28A52242B71DE006D7996 /* SchedulerTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SchedulerTest.mm; sourceTree = "<group>"; };
-		71F28A53242B71DE006D7996 /* SharedObjectTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedObjectTest.mm; sourceTree = "<group>"; };
-		71F28A54242B71DE006D7996 /* NativeReanimatedModuleSpecTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeReanimatedModuleSpecTest.mm; sourceTree = "<group>"; };
-		71F28A55242B71DE006D7996 /* WorkletModuleTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorkletModuleTest.mm; sourceTree = "<group>"; };
-		71F28A56242B71DE006D7996 /* SharedFunctionTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedFunctionTest.mm; sourceTree = "<group>"; };
-		71F28A57242B71DE006D7996 /* MapperTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapperTest.mm; sourceTree = "<group>"; };
-		71F28A58242B71DE006D7996 /* SharedDoubleTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedDoubleTest.mm; sourceTree = "<group>"; };
-		71F28A59242B71DE006D7996 /* MapperRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapperRegistryTest.mm; sourceTree = "<group>"; };
+		71CE41D2242CAE7000E4BDA4 /* WorkletRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorkletRegistryTest.mm; sourceTree = "<group>"; };
+		71CE41D3242CAE7000E4BDA4 /* NativeReanimatedModuleTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeReanimatedModuleTest.mm; sourceTree = "<group>"; };
+		71CE41D4242CAE7000E4BDA4 /* SharedValueRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedValueRegistryTest.mm; sourceTree = "<group>"; };
+		71CE41D5242CAE7000E4BDA4 /* SharedWorkletStarterTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedWorkletStarterTest.mm; sourceTree = "<group>"; };
+		71CE41D6242CAE7000E4BDA4 /* ApplierRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplierRegistryTest.mm; sourceTree = "<group>"; };
+		71CE41D7242CAE7000E4BDA4 /* SharedArrayTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedArrayTest.mm; sourceTree = "<group>"; };
+		71CE41D8242CAE7000E4BDA4 /* SharedStringTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedStringTest.mm; sourceTree = "<group>"; };
+		71CE41D9242CAE7000E4BDA4 /* ApplierTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ApplierTest.mm; sourceTree = "<group>"; };
+		71CE41DA242CAE7000E4BDA4 /* SchedulerTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SchedulerTest.mm; sourceTree = "<group>"; };
+		71CE41DB242CAE7000E4BDA4 /* SharedObjectTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedObjectTest.mm; sourceTree = "<group>"; };
+		71CE41DC242CAE7000E4BDA4 /* NativeReanimatedModuleSpecTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = NativeReanimatedModuleSpecTest.mm; sourceTree = "<group>"; };
+		71CE41DD242CAE7000E4BDA4 /* WorkletModuleTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = WorkletModuleTest.mm; sourceTree = "<group>"; };
+		71CE41DE242CAE7000E4BDA4 /* SharedFunctionTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedFunctionTest.mm; sourceTree = "<group>"; };
+		71CE41DF242CAE7000E4BDA4 /* MapperTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapperTest.mm; sourceTree = "<group>"; };
+		71CE41E0242CAE7000E4BDA4 /* SharedDoubleTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = SharedDoubleTest.mm; sourceTree = "<group>"; };
+		71CE41E1242CAE7000E4BDA4 /* MapperRegistryTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MapperRegistryTest.mm; sourceTree = "<group>"; };
+		71CE41F3242CAE8B00E4BDA4 /* IOSSchedulerForTests.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = IOSSchedulerForTests.mm; sourceTree = "<group>"; };
+		71CE41F5242CB04F00E4BDA4 /* IOSSchedulerForTests.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IOSSchedulerForTests.h; sourceTree = "<group>"; };
+		71CE41F8242CBC7100E4BDA4 /* TestTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TestTools.h; sourceTree = "<group>"; };
+		71CE41F9242CC9A200E4BDA4 /* TestTools.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = TestTools.mm; sourceTree = "<group>"; };
 		D90E4A5994FA95D3B175AC7F /* Pods-ReanimatedExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReanimatedExample.release.xcconfig"; path = "Target Support Files/Pods-ReanimatedExample/Pods-ReanimatedExample.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -115,7 +121,8 @@
 		00E356EF1AD99517003FC87E /* ReanimatedExampleTests */ = {
 			isa = PBXGroup;
 			children = (
-				71F28A49242B71DE006D7996 /* generatedTests */,
+				71CE41D1242CAE7000E4BDA4 /* TestCases */,
+				71CE41E2242CAE7000E4BDA4 /* TestTools */,
 				00E356F21AD99517003FC87E /* SampleTest.mm */,
 				00E356F01AD99517003FC87E /* Supporting Files */,
 			);
@@ -188,27 +195,38 @@
 			path = ReanimatedExampleTests;
 			sourceTree = "<group>";
 		};
-		71F28A49242B71DE006D7996 /* generatedTests */ = {
+		71CE41D1242CAE7000E4BDA4 /* TestCases */ = {
 			isa = PBXGroup;
 			children = (
-				71F28A4A242B71DE006D7996 /* WorkletRegistryTest.mm */,
-				71F28A4B242B71DE006D7996 /* NativeReanimatedModuleTest.mm */,
-				71F28A4C242B71DE006D7996 /* SharedValueRegistryTest.mm */,
-				71F28A4D242B71DE006D7996 /* SharedWorkletStarterTest.mm */,
-				71F28A4E242B71DE006D7996 /* ApplierRegistryTest.mm */,
-				71F28A4F242B71DE006D7996 /* SharedArrayTest.mm */,
-				71F28A50242B71DE006D7996 /* SharedStringTest.mm */,
-				71F28A51242B71DE006D7996 /* ApplierTest.mm */,
-				71F28A52242B71DE006D7996 /* SchedulerTest.mm */,
-				71F28A53242B71DE006D7996 /* SharedObjectTest.mm */,
-				71F28A54242B71DE006D7996 /* NativeReanimatedModuleSpecTest.mm */,
-				71F28A55242B71DE006D7996 /* WorkletModuleTest.mm */,
-				71F28A56242B71DE006D7996 /* SharedFunctionTest.mm */,
-				71F28A57242B71DE006D7996 /* MapperTest.mm */,
-				71F28A58242B71DE006D7996 /* SharedDoubleTest.mm */,
-				71F28A59242B71DE006D7996 /* MapperRegistryTest.mm */,
+				71CE41D2242CAE7000E4BDA4 /* WorkletRegistryTest.mm */,
+				71CE41D3242CAE7000E4BDA4 /* NativeReanimatedModuleTest.mm */,
+				71CE41D4242CAE7000E4BDA4 /* SharedValueRegistryTest.mm */,
+				71CE41D5242CAE7000E4BDA4 /* SharedWorkletStarterTest.mm */,
+				71CE41D6242CAE7000E4BDA4 /* ApplierRegistryTest.mm */,
+				71CE41D7242CAE7000E4BDA4 /* SharedArrayTest.mm */,
+				71CE41D8242CAE7000E4BDA4 /* SharedStringTest.mm */,
+				71CE41D9242CAE7000E4BDA4 /* ApplierTest.mm */,
+				71CE41DA242CAE7000E4BDA4 /* SchedulerTest.mm */,
+				71CE41DB242CAE7000E4BDA4 /* SharedObjectTest.mm */,
+				71CE41DC242CAE7000E4BDA4 /* NativeReanimatedModuleSpecTest.mm */,
+				71CE41DD242CAE7000E4BDA4 /* WorkletModuleTest.mm */,
+				71CE41DE242CAE7000E4BDA4 /* SharedFunctionTest.mm */,
+				71CE41DF242CAE7000E4BDA4 /* MapperTest.mm */,
+				71CE41E0242CAE7000E4BDA4 /* SharedDoubleTest.mm */,
+				71CE41E1242CAE7000E4BDA4 /* MapperRegistryTest.mm */,
 			);
-			path = generatedTests;
+			path = TestCases;
+			sourceTree = "<group>";
+		};
+		71CE41E2242CAE7000E4BDA4 /* TestTools */ = {
+			isa = PBXGroup;
+			children = (
+				71CE41F3242CAE8B00E4BDA4 /* IOSSchedulerForTests.mm */,
+				71CE41F5242CB04F00E4BDA4 /* IOSSchedulerForTests.h */,
+				71CE41F8242CBC7100E4BDA4 /* TestTools.h */,
+				71CE41F9242CC9A200E4BDA4 /* TestTools.mm */,
+			);
+			path = TestTools;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -420,23 +438,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				71F28A61242B71DE006D7996 /* ApplierTest.mm in Sources */,
-				71F28A64242B71DE006D7996 /* NativeReanimatedModuleSpecTest.mm in Sources */,
+				71CE41EA242CAE7000E4BDA4 /* ApplierTest.mm in Sources */,
+				71CE41ED242CAE7000E4BDA4 /* NativeReanimatedModuleSpecTest.mm in Sources */,
 				715B4D0D24236CA80073FC2F /* SampleTest.mm in Sources */,
-				71F28A69242B71DE006D7996 /* MapperRegistryTest.mm in Sources */,
-				71F28A60242B71DE006D7996 /* SharedStringTest.mm in Sources */,
-				71F28A5A242B71DE006D7996 /* WorkletRegistryTest.mm in Sources */,
-				71F28A5B242B71DE006D7996 /* NativeReanimatedModuleTest.mm in Sources */,
-				71F28A5D242B71DE006D7996 /* SharedWorkletStarterTest.mm in Sources */,
-				71F28A63242B71DE006D7996 /* SharedObjectTest.mm in Sources */,
-				71F28A5E242B71DE006D7996 /* ApplierRegistryTest.mm in Sources */,
-				71F28A5F242B71DE006D7996 /* SharedArrayTest.mm in Sources */,
-				71F28A66242B71DE006D7996 /* SharedFunctionTest.mm in Sources */,
-				71F28A65242B71DE006D7996 /* WorkletModuleTest.mm in Sources */,
-				71F28A67242B71DE006D7996 /* MapperTest.mm in Sources */,
-				71F28A68242B71DE006D7996 /* SharedDoubleTest.mm in Sources */,
-				71F28A5C242B71DE006D7996 /* SharedValueRegistryTest.mm in Sources */,
-				71F28A62242B71DE006D7996 /* SchedulerTest.mm in Sources */,
+				71CE41F2242CAE7000E4BDA4 /* MapperRegistryTest.mm in Sources */,
+				71CE41E9242CAE7000E4BDA4 /* SharedStringTest.mm in Sources */,
+				71CE41FA242CC9A200E4BDA4 /* TestTools.mm in Sources */,
+				71CE41E3242CAE7000E4BDA4 /* WorkletRegistryTest.mm in Sources */,
+				71CE41E4242CAE7000E4BDA4 /* NativeReanimatedModuleTest.mm in Sources */,
+				71CE41E6242CAE7000E4BDA4 /* SharedWorkletStarterTest.mm in Sources */,
+				71CE41EC242CAE7000E4BDA4 /* SharedObjectTest.mm in Sources */,
+				71CE41E7242CAE7000E4BDA4 /* ApplierRegistryTest.mm in Sources */,
+				71CE41E8242CAE7000E4BDA4 /* SharedArrayTest.mm in Sources */,
+				71CE41EF242CAE7000E4BDA4 /* SharedFunctionTest.mm in Sources */,
+				71CE41EE242CAE7000E4BDA4 /* WorkletModuleTest.mm in Sources */,
+				71CE41F4242CAE8B00E4BDA4 /* IOSSchedulerForTests.mm in Sources */,
+				71CE41F0242CAE7000E4BDA4 /* MapperTest.mm in Sources */,
+				71CE41F1242CAE7000E4BDA4 /* SharedDoubleTest.mm in Sources */,
+				71CE41E5242CAE7000E4BDA4 /* SharedValueRegistryTest.mm in Sources */,
+				71CE41EB242CAE7000E4BDA4 /* SchedulerTest.mm in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

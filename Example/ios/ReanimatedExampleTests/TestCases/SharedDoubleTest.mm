@@ -36,7 +36,7 @@
   [super tearDown];
 }
 
-- (void)testInitializatio {
+- (void)testInitialization {
   XCTAssert(sd->id == currentId, @"id assigned properly");
   XCTAssert(sd->value == initialValue, @"value assigned properly");
 }
@@ -56,7 +56,22 @@
 }
 
 - (void)testAsParameter {
-  // todo
+  const double changedValue = 47;
+  
+  jsi::Value param = sd->asParameter(*rt);
+  jsi::Value valueProp = param.asObject(*rt).getProperty(*rt, "value");
+  jsi::Value setProp = param.asObject(*rt).getProperty(*rt, "set");
+  jsi::Value idProp = param.asObject(*rt).getProperty(*rt, "id");
+  jsi::Value emptyProp = param.asObject(*rt).getProperty(*rt, "");
+  
+  XCTAssert(valueProp.getNumber() == initialValue, @"initial value is valid");
+  XCTAssert(idProp.getNumber() == currentId, @"id is valid");
+  XCTAssert(emptyProp.isUndefined(), @"empty prop returns undefined");
+  XCTAssert(setProp.isObject(), @"function valid");
+  
+  setProp.getObject(*rt).asFunction(*rt).call(*rt, changedValue, 1);
+  valueProp = param.asObject(*rt).getProperty(*rt, "value");
+  XCTAssert(valueProp.getNumber() == changedValue, @"changed value is valid");
 }
 
 - (void)getSharedValues {

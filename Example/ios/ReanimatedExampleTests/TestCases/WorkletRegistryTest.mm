@@ -8,12 +8,13 @@
 #import <XCTest/XCTest.h>
 #import <jsi/JSCRuntime.h>
 #import "WorkletRegistry.h"
+#include "../TestTools/TestTools.h"
 
 @interface WorkletRegistryTest : XCTestCase
 {
-  std::unique_ptr<jsi::Runtime> rt;
+  std::shared_ptr<jsi::Runtime> rtt;
   std::unique_ptr<WorkletRegistry> wr;
-  std::unique_ptr<jsi::Function> fun;
+  std::shared_ptr<jsi::Function> fun;
 }
 @end
 
@@ -22,9 +23,9 @@
 - (void)setUp {
   [super setUp];
   // Put setup code here. This method is called before the invocation of each test method in the class.
-  rt.reset(static_cast<jsi::Runtime*>(facebook::jsc::makeJSCRuntime().release()));
+  rtt = TestTools::getRuntime();
   wr.reset(new WorkletRegistry);
-  auto funObj = (rt->global().getPropertyAsFunction(*rt, "eval").call(*rt, "(function () {})")).getObject(*rt).getFunction(*rt);
+  auto funObj = TestTools::stringToFunction("function () {}");
   fun.reset(&funObj);
 }
 
@@ -35,16 +36,14 @@
 }
 
 - (void)testRegister {
-  std::shared_ptr<jsi::Function> funPtr(new jsi::Function(std::move(*fun)));
-  wr->registerWorklet(0, funPtr);
+  wr->registerWorklet(0, fun);
   
   XCTAssert(wr->getWorkletMap().find(0) != wr->getWorkletMap().end(), @"item added properly");
   XCTAssert(wr->getWorkletMap().find(1) == wr->getWorkletMap().end(), @"not added item not found");
 }
 
 - (void)testUnregister {
-  std::shared_ptr<jsi::Function> funPtr(new jsi::Function(std::move(*fun)));
-  wr->registerWorklet(0, funPtr);
+  wr->registerWorklet(0, fun);
   wr->unregisterWorklet(0);
   
   XCTAssert(wr->getWorkletMap().find(0) == wr->getWorkletMap().end(), @"item removed properly");
@@ -52,8 +51,7 @@
 }
 
 - (void)testGetWorklet {
-  std::shared_ptr<jsi::Function> funPtr(new jsi::Function(std::move(*fun)));
-  wr->registerWorklet(0, funPtr);
+  wr->registerWorklet(0, fun);
   
   std::shared_ptr<Worklet> wt = wr->getWorklet(0);
   XCTAssert(wt->workletId == 0, @"worklet id valid");
