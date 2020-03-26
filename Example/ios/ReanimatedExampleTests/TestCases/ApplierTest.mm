@@ -85,6 +85,7 @@
   //  expexted return value
   //  new value of shared double expected
   std::vector<std::tuple<std::string, bool, double>> data = {
+    { "function(v) {}", false, initialSDValue },
     { "function(v) {v.set(88.3);}", false, 88.3 },
     { "function(v) {v.set(45); return true;}", true, 45 },
     { "function(v) {v.set(0); if (v.value !== 0) { return true; }v.set(111);}", false, 111 },
@@ -98,12 +99,19 @@
   
 }
 
-- (void)testAddOnFinishListener {
-  XCTAssert(1 == 1, @"testing Applier");
-}
-
-- (void)testFinish {
-  XCTAssert(1 == 1, @"testing Applier");
+- (void)testOnFinishListeners {
+  int counter = 0;
+  
+  auto app = [self createApplier:"function(){ return true; }"];
+  std::get<0>(app)->addOnFinishListener([&counter]() -> void { counter += 1; });
+  std::get<0>(app)->addOnFinishListener([&counter]() -> void { counter += 2; });
+  XCTAssert(std::get<0>(app)->apply(*rt, std::get<1>(app)), @"applier returned proper value");
+  
+  auto app2 = [self createApplier:"function(){}"];
+  std::get<0>(app2)->addOnFinishListener([&counter]() -> void { counter += 4; });
+  XCTAssert(!std::get<0>(app2)->apply(*rt, std::get<1>(app2)), @"applier returned proper value");
+  
+  XCTAssert(counter == 3, @"valid number of finish listener calls");
 }
 
 @end
