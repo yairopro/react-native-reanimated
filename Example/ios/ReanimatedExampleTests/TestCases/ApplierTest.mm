@@ -12,12 +12,6 @@
 #include <tuple>
 #import "Applier.h"
 #include "../TestTools/TestTools.h"
-#include "Worklet.h"
-#include "ErrorHandler.h"
-#import "IOSErrorHandler.h"
-#include "IOSSchedulerForTests.h"
-#include "SharedDouble.h"
-#include "WorkletModule.h"
 
 @interface ApplierTest : XCTestCase
 {
@@ -43,39 +37,13 @@
   [super tearDown];
 }
 
-- (std::tuple<std::shared_ptr<Applier>, std::shared_ptr<WorkletModule>>)createApplier:(const char *)functionStr {
-  
-  // create worklet
-  std::shared_ptr<Worklet> worklet(new Worklet);
-  worklet->workletId = 0;
-  worklet->body = std::make_shared<jsi::Function>(TestTools::stringToFunction(functionStr));
-  // get scheduler
-  std::shared_ptr<Scheduler> scheduler(TestTools::getScheduler());
-  // create error handler
-  std::shared_ptr<ErrorHandler> errorHandler(((ErrorHandler*)new IOSErrorHandler(scheduler)));
-  // create shared value registry
-  std::shared_ptr<SharedValueRegistry> sharedValueRegistry(new SharedValueRegistry);
-  // create shared values
+- (std::tuple<std::shared_ptr<Applier>, std::shared_ptr<WorkletModule>>)createApplier:(std::string)functionStr {
+  std::shared_ptr<SharedValueRegistry> sharedValueRegistry = TestTools::mockSharedValueRegistry();
   sharedValueRegistry->registerSharedValue(0, sd);
-  // create applier
-  std::shared_ptr<Applier> applier(new Applier(0, worklet, { 0 }, errorHandler, sharedValueRegistry));
-  // create mapper registry
-  std::shared_ptr<MapperRegistry> mapperRegistry(new MapperRegistry(sharedValueRegistry));
-  // create applier registry
-  std::shared_ptr<ApplierRegistry> applierRegistry(new ApplierRegistry(mapperRegistry));
-  // create worklet registry
-  std::shared_ptr<WorkletRegistry> workletRegistry(new WorkletRegistry);
-  // create event value
-  jsi::Value uv = jsi::Value::undefined();
-  std::shared_ptr<jsi::Value> eventValue(&uv);
-  // create worklet module
-  std::shared_ptr<WorkletModule> workletModule(new WorkletModule(
-                                        sharedValueRegistry,
-                                        applierRegistry,
-                                        workletRegistry,
-                                        eventValue,
-                                        errorHandler));
-  return { applier, workletModule };
+  return { 
+      TestTools::mockApplier(functionStr, sharedValueRegistry, { 0 }),
+      TestTools::mockWorkletModule(sharedValueRegistry)
+  };
 }
 
 - (void)testApply {
@@ -92,7 +60,7 @@
   };
   
   for (auto item : data) {
-    auto app = [self createApplier:std::get<0>(item).c_str()];
+    auto app = [self createApplier:std::get<0>(item)];
     XCTAssert(std::get<0>(app)->apply(*rt, std::get<1>(app)) == std::get<1>(item), @"applier returned proper value");
     XCTAssert(sd->value == std::get<2>(item), @"shared value changed properly");
   }
