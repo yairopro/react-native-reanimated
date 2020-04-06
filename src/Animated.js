@@ -25,6 +25,7 @@ import {
   createTransitioningComponent,
 } from './Transitioning';
 import SpringUtils from './animations/SpringUtils';
+import InstalledFunctions from './reanimated2/InstalledFunctions'
 
 
 const decayWrapper = backwardCompatibleAnimWrapper(decay, DecayAnimation);
@@ -59,6 +60,8 @@ const Animated = {
   addWhitelistedUIProps,
   
   custom,
+  // this key is added due to avoid name collisions
+  reanimated2: InstalledFunctions,
 };
 
 export default Animated;
