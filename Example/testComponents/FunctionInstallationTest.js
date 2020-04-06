@@ -5,11 +5,9 @@ import { View, Text } from 'react-native';
 const FunctionInstallationTest = () => {
     ;(() => {
         console.log('testing assign');
-        Animated.reanimated20.f1();
-        Animated.reanimated20.f2();
-        //Animated.assign();
+        Animated.work()
     })();
-    
+
     return (
         <View>
             <Text>Testing...</Text>

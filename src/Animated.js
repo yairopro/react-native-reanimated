@@ -60,8 +60,7 @@ const Animated = {
   addWhitelistedUIProps,
   
   custom,
-  // this key is added due to avoid name collisions
-  reanimated2: InstalledFunctions,
+  ...InstalledFunctions,
 };
 
 export default Animated;

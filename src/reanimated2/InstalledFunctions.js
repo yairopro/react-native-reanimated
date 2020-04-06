@@ -1,14 +1,32 @@
-const f1 = () => {
-    console.log('HERE f1')
+const work = () => {
+    console.log('function installation works')
 }
 
-const f2 = () => {
-    console.log('HERE f2')
+function assign(left, right) {
+    if ((typeof right === 'object') && (!right.value)) {
+        for (let key of Object.keys(right)) {
+            if (left[key]) {
+                assign(left[key], right[key]);
+            }
+        }
+    } else if (Array.isArray(right)) {
+        for (let i; i < right.length; i++) {
+            assign(left[i], right[i]);
+        }
+    } else {
+        if (left.set) {
+            if (right.value) {
+                left.set(right.value);
+            } else {
+                left.set(right);
+            }
+        }
+    }
 }
 
 const InstalledFunctions = {
-    f1,
-    f2,
+    work,
+    assign,
 }
 
 export default InstalledFunctions
