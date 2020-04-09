@@ -309,7 +309,7 @@ function copyAndUnwrap(obj) {
   return obj.initialValue;
 }
 
-export function useAnimatedStyle(body, input, accessories) {
+export function useAnimatedStyle(body, input, accessories) { // ToDo: it should execute only the first time
   if (accessories != null) {
     input = [input, accessories];
   }
