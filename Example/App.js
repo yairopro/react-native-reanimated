@@ -29,9 +29,11 @@ import MapperTest2 from './testComponents/MapperTest2';
 import { ScrollView } from 'react-native-gesture-handler';
 import UseAnimatedStyleTest from './testComponents/UseAnimatedStyleTest';
 import WithWorklet from './testComponents/WithWorklet';
+import LiquidSwipe from './LiquidSwipe/index';
 
 // set components here:
 const components = {
+  'LiquidSwipe': LiquidSwipe,
   '3D Menu': Menu,
   'WithWorklet': WithWorklet,
   'DragTest': DragTest,
