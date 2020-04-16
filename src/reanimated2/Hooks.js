@@ -53,8 +53,6 @@ function makeShareable(obj) {
     const sharedArray = SharedValue.create(obj);
     toRelease.push(() => {
       sharedArray.release();
-      obj.id = undefined;
-      obj.sharedArray = undefined;
     });
 
     obj.id = sharedArray.id;
