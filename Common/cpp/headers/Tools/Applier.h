@@ -13,6 +13,7 @@
 #include "BaseWorkletModule.h"
 #include "ErrorHandler.h"
 #include "SharedValueRegistry.h"
+#include "IOSRuntimeSpawner.h"
 
 using namespace facebook;
 
@@ -21,6 +22,8 @@ class Applier {
   std::vector<std::function<void()>> onFinishListeners;
   std::shared_ptr<ErrorHandler> errorHandler;
   std::shared_ptr<SharedValueRegistry> sharedValueRegistry;
+  std::unique_ptr<RuntimeSpawner> rts;
+  std::vector<std::shared_ptr<jsi::Runtime>> rtv;
   bool justStarted = true;
   public:
     std::shared_ptr<Worklet> worklet;
@@ -30,7 +33,7 @@ class Applier {
             std::vector<std::shared_ptr<SharedValue>> sharedValues,
             std::shared_ptr<ErrorHandler> errorHandler,
             std::shared_ptr<SharedValueRegistry> sharedValueRegistry);
-    virtual bool apply(jsi::Runtime &rt, std::shared_ptr<BaseWorkletModule> module);
+    virtual bool apply(std::shared_ptr<BaseWorkletModule> module);
     void addOnFinishListener(const std::function<void()> &listener);
     virtual ~Applier();
     void finish(jsi::Runtime &rt); 

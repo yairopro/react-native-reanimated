@@ -19,7 +19,7 @@ Mapper::Mapper(int id,
 
 void Mapper::execute(jsi::Runtime &rt, std::shared_ptr<BaseWorkletModule> module) {
   initialized = true;
-  applier->apply(rt, module);
+  applier->apply(module);
 }
 
 std::shared_ptr<Mapper> Mapper::createMapper(int id,

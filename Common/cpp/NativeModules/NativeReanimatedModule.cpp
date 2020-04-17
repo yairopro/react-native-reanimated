@@ -3,6 +3,7 @@
 #include "Logger.h"
 #include <functional>
 #include <thread>
+#include "IOSRuntimeSpawner.h"
 
 using namespace facebook;
 
@@ -16,7 +17,7 @@ jsi::Value eval(jsi::Runtime &rt, const char *code) {
 jsi::Function function(jsi::Runtime &rt, const std::string& code) {
   return eval(rt, ("(" + code + ")").c_str()).getObject(rt).getFunction(rt);
 }
-
+//rt.global().getPropertyAsFunction(rt, "eval").call(rt, ("(" + code + ")").c_str()).getObject(rt).getFunction(rt)
 NativeReanimatedModule::NativeReanimatedModule(
   std::unique_ptr<jsi::Runtime> rt,
   std::shared_ptr<ApplierRegistry> ar,
@@ -44,9 +45,9 @@ void NativeReanimatedModule::registerWorklet( // make it async !!!
   std::string functionAsString,
   int length) {
     scheduler->scheduleOnUI([functionAsString, id, length, this]() mutable {
-    auto fun = function(*runtime, functionAsString.c_str());
-    std::shared_ptr<jsi::Function> funPtr(new jsi::Function(std::move(fun)));
-    this->workletRegistry->registerWorklet((int)id, funPtr, length);
+      //auto fun = function(*runtime, functionAsString.c_str());
+      //std::shared_ptr<jsi::Function> funPtr(new jsi::Function(std::move(fun)));
+      this->workletRegistry->registerWorklet((int)id, functionAsString, length);
   });
 }
 

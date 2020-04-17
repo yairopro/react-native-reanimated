@@ -51,12 +51,15 @@ void ApplierRegistry::evaluateAppliers(
   for (auto & p : appliers) {
     int id = p.first;
     auto & applier = p.second;
-    if (applier->apply(rt, module)) {
+    if (applier->apply(module)) {
       toRemove.push_back(id);
     }
   }
-  
-  mapperRegistry->execute(rt, module);
+  /*
+  SpeedChecker::checkSpeed("mappers: ", [=, &rt](){
+     mapperRegistry->execute(rt, module);
+  });
+ */
   
   for (auto id : toRemove) {
     unregisterApplier(id);

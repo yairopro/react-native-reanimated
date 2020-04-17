@@ -39,7 +39,7 @@ jsi::Value SharedFunction::asParameter(jsi::Runtime &rt) {
          args[0].asString(rt).utf8(rt) == "thisIsAHackToGetWorkletId") {
        return jsi::Value(worklet->workletId);
      }
-
+/*
      if (thisValue.isObject()) {
         return worklet->body->callWithThis(rt,
                                                 thisValue.asObject(rt),
@@ -47,7 +47,8 @@ jsi::Value SharedFunction::asParameter(jsi::Runtime &rt) {
                                                 (size_t)count);
      } else {
         return worklet->body->call(rt, static_cast<const jsi::Value*>(args), (size_t)count);
-     }
+     }*/
+       return jsi::Value::undefined();
   };
   
   std::string idAsString = std::to_string(id);
