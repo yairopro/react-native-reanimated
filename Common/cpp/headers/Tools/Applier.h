@@ -7,6 +7,7 @@
 
 #include <memory>
 #include <vector>
+#include <unordered_set>
 #include <jsi/jsi.h>
 #include "SharedValue.h"
 #include "Worklet.h"
@@ -23,7 +24,6 @@ class Applier {
   std::shared_ptr<ErrorHandler> errorHandler;
   std::shared_ptr<SharedValueRegistry> sharedValueRegistry;
   std::unique_ptr<RuntimeSpawner> rts;
-  std::vector<std::shared_ptr<jsi::Runtime>> rtv;
   bool justStarted = true;
   public:
     std::shared_ptr<Worklet> worklet;

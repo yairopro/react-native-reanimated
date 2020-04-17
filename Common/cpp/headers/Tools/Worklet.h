@@ -14,7 +14,7 @@ class Worklet {
   public:
     int workletId;
     int length;
-    std::string body;
+    std::shared_ptr<const jsi::PreparedJavaScript> body;
     std::shared_ptr<std::function<void()>> listener;
     virtual ~Worklet(){}
 };

@@ -44,10 +44,13 @@ void NativeReanimatedModule::registerWorklet( // make it async !!!
   double id,
   std::string functionAsString,
   int length) {
-    scheduler->scheduleOnUI([functionAsString, id, length, this]() mutable {
-      //auto fun = function(*runtime, functionAsString.c_str());
-      //std::shared_ptr<jsi::Function> funPtr(new jsi::Function(std::move(fun)));
-      this->workletRegistry->registerWorklet((int)id, functionAsString, length);
+    scheduler->scheduleOnUI([functionAsString, id, length, this, &rt]() mutable {
+      std::string str = functionAsString;
+      str = "(" + str + ")";
+
+      std::shared_ptr<jsi::Buffer> buf(new jsi::StringBuffer(str));
+      std::shared_ptr<const jsi::PreparedJavaScript> prpjs = rt.prepareJavaScript(buf, std::string("NRM"));
+      this->workletRegistry->registerWorklet((int)id, prpjs, length);
   });
 }
 

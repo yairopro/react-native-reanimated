@@ -30,7 +30,6 @@ bool Applier::apply(std::shared_ptr<BaseWorkletModule> module) {
   jsi::Value * args = new jsi::Value[sharedValues.size()];
 
   std::shared_ptr<jsi::Runtime> rt = std::move(rts->generateRuntimeSpec());
-  rtv.push_back(rt);
   
   for (int i = 0; i < sharedValues.size(); ++i) {
       args[i] = jsi::Value(*rt, sharedValues[i]->asParameter(*rt));
@@ -41,15 +40,9 @@ bool Applier::apply(std::shared_ptr<BaseWorkletModule> module) {
   module->setJustStarted(justStarted);
 
   jsi::Value returnValue;
-  /*
-  Logger::log("here");
-  Logger::log(worklet->body.c_str());
-   */
-  std::string str = worklet->body;
-  str = "(" + str + ")";
+  jsi::Value val = rt->evaluatePreparedJavaScript(worklet->body);
   
- 
-  jsi::Function fun = rt->global().getPropertyAsFunction(*rt, "eval").call(*rt, (str.c_str())).getObject(*rt).getFunction(*rt);
+  jsi::Function fun = val.asObject(*rt).asFunction(*rt);
   returnValue = fun.callWithThis(
     *rt,
     jsi::Object::createFromHostObject(*rt, module),

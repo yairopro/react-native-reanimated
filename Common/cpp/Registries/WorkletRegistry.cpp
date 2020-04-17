@@ -3,10 +3,10 @@
 //
 #include "WorkletRegistry.h"
 
-void WorkletRegistry::registerWorklet(int id, std::string code, int length) {
+void WorkletRegistry::registerWorklet(int id, std::shared_ptr<const jsi::PreparedJavaScript> body, int length) {
   std::shared_ptr<Worklet> worklet(new Worklet());
   worklet->workletId = id;
-  worklet->body = code;
+  worklet->body = body;
   worklet->length = length;
   workletMap[id] = worklet;
 }
