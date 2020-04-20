@@ -11,7 +11,6 @@
 #import "IOSScheduler.h"
 #import "IOSErrorHandler.h"
 #import <jsi/JSCRuntime.h>
-#import "RuntimeDecorator.h"
 
 @interface NativeProxy()
 
@@ -92,7 +91,6 @@ std::shared_ptr<IOSScheduler> scheduler;
   std::shared_ptr<MapperRegistry> mapperRegistry(new MapperRegistry(sharedValueRegistry));
   std::shared_ptr<ApplierRegistry> applierRegistry(new ApplierRegistry(mapperRegistry));
   std::unique_ptr<jsi::Runtime> animatedRuntime(static_cast<jsi::Runtime*>(facebook::jsc::makeJSCRuntime().release()));
-  RuntimeDecorator::addGlobalMethods(*animatedRuntime);
   
   nativeReanimatedModule = std::make_shared<NativeReanimatedModule>(std::move(animatedRuntime),
   applierRegistry,

@@ -26,6 +26,7 @@ namespace react {
 
 class NativeReanimatedModule : public NativeReanimatedModuleSpec {
     std::shared_ptr<Scheduler> scheduler;
+    void initializeRuntime(jsi::Runtime &rt);
 
   public:
     NativeReanimatedModule(
