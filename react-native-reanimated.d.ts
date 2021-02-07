@@ -47,7 +47,7 @@ declare module 'react-native-reanimated' {
 
     interface InterpolationConfig {
       inputRange: ReadonlyArray<Adaptable<number>>;
-      outputRange: ReadonlyArray<Adaptable<number>>;
+      outputRange: ReadonlyArray<Adaptable<number | string>>;
       extrapolate?: Extrapolate;
       extrapolateLeft?: Extrapolate;
       extrapolateRight?: Extrapolate;
@@ -147,8 +147,8 @@ declare module 'react-native-reanimated' {
 
     export const SpringUtils: SpringUtils
 
-    export type TransformStyleTypes = TransformsStyle['transform'] extends readonly (infer T)[] ? T : never
-    export type AdaptTransforms<T> = { [P in keyof T]: Animated.Adaptable<T[P]> }
+    export type TransformStyleTypes = TransformsStyle['transform'] extends (readonly (infer T)[] | undefined) ? T : never
+    export type AdaptTransforms<T> = { [P in keyof T]: Adaptable<T[P] extends string ? number | string : T[P]> }
     export type AnimatedTransform = (AdaptTransforms<TransformStyleTypes>)[]
 
     export type AnimateStyle<S extends object> = {
@@ -178,6 +178,7 @@ declare module 'react-native-reanimated' {
     type CodeProps = {
       exec?: AnimatedNode<number>
       children?: () => AnimatedNode<number>
+      dependencies?: Array<any>
     };
 
     // components
@@ -198,7 +199,7 @@ declare module 'react-native-reanimated' {
       getNode(): ReactNativeScrollView;
     }
     export class Code extends Component<CodeProps> {}
-    export function createAnimatedComponent<T>(component: T): T;
+    export function createAnimatedComponent(component: any): any;
 
     // classes
     export {
@@ -234,27 +235,9 @@ declare module 'react-native-reanimated' {
     export const neq: BinaryOperator<0 | 1>;
     export const and: MultiOperator<0 | 1>;
     export const or: MultiOperator<0 | 1>;
-    export function proc<P1>(
-      cb: (p1: P1) => AnimatedNode<number>
-    ): (p1: P1) => AnimatedNode<number>;
-    export function proc<P1, P2>(
-      cb: (p1: P1, p2: P2) => AnimatedNode<number>
-    ): (p1: P1, p2: P2) => AnimatedNode<number>;
-    export function proc<P1, P2, P3>(
-      cb: (p1: P1, p2: P2, p3: P3) => AnimatedNode<number>
-    ): (p1: P1, p2: P2, p3: P3) => AnimatedNode<number>;
-    export function proc<P1, P2, P3, P4>(
-      cb: (p1: P1, p2: P2, p3: P3, p4: P4) => AnimatedNode<number>
-    ): (p1: P1, p2: P2, p3: P3, p4: P4) => AnimatedNode<number>;
-    export function proc<P1, P2, P3, P4, P5>(
-      cb: (p1: P1, p2: P2, p3: P3, p4: P4, p5: P5) => AnimatedNode<number>
-    ): (p1: P1, p2: P2, p3: P3, p4: P4, p5: P5) => AnimatedNode<number>;
-    export function proc<P1, P2, P3, P4, P5, P6>(
-      cb: (p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6) => AnimatedNode<number>
-    ): (p1: P1, p2: P2, p3: P3, p4: P4, p5: P5, p6: P6) => AnimatedNode<number>;
-    export function proc <P>(
-      cb: (...params: AnimatedValue<number>[]) => AnimatedNode<number>
-    ): (...params: Adaptable<number>[]) => AnimatedNode<number>;
+    export function proc<T extends (Adaptable<Value> | undefined)[]>(
+      func: (...args: T) => AnimatedNode<number>
+    ): typeof func;
     export function defined(value: Adaptable<any>): AnimatedNode<0 | 1>;
     export function not(value: Adaptable<any>): AnimatedNode<0 | 1>;
     export function set<T extends Value>(
@@ -316,6 +299,16 @@ declare module 'react-native-reanimated' {
       value: Adaptable<number>,
       config: InterpolationConfig,
     ): AnimatedNode<number>;
+    export function interpolateColors(
+      animationValue: Adaptable<number>,
+      {
+        inputRange,
+        outputColorRange
+      }: {
+        inputRange: ReadonlyArray<Adaptable<number>>;
+        outputColorRange: (string | number)[];
+      }
+    ): AnimatedNode<number>;
     export const max: BinaryOperator;
     export const min: BinaryOperator;
 
@@ -354,9 +347,13 @@ declare module 'react-native-reanimated' {
       exec: () => Nullable< AnimatedNode<number>[] | AnimatedNode<number> > | boolean,
       deps: Array<any>,
     ): void
+    export function useValue<T extends Value>(
+      initialValue: T
+    ): AnimatedValue<T>;
 
     // configuration
     export function addWhitelistedNativeProps(props: { [key: string]: true }): void;
+    export function addWhitelistedUIProps(props: { [key: string]: true }): void;
   }
 
   export default Animated;
@@ -459,6 +456,7 @@ declare module 'react-native-reanimated' {
   export const abs: typeof Animated.abs
   export const acc: typeof Animated.acc
   export const color: typeof Animated.color
+  export const interpolateColors: typeof Animated.interpolateColors
   export const diff: typeof Animated.diff
   export const diffClamp: typeof Animated.diffClamp
   export const interpolate: typeof Animated.interpolate
@@ -473,4 +471,5 @@ declare module 'react-native-reanimated' {
   export const timing: typeof Animated.timing
   export const spring: typeof Animated.spring
   export const SpringUtils: typeof Animated.SpringUtils
+  export const useValue: typeof Animated.useValue
 }
